@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.shape.SVGPath?>
+<?import javafx.scene.image.ImageView?>
+
+<BorderPane xmlns:fx="http://javafx.com/fxml" fx:controller="com.example.librarymanagementsystem.DashboardController"
+            stylesheets="@styles.css" styleClass="root">
+
+    <!-- Sidebar -->
+    <left>
+        <VBox styleClass="sidebar" prefWidth="250" spacing="10">
+            <padding>
+                <Insets top="30" right="20" bottom="30" left="20"/>
+            </padding>
+            
+            <!-- Brand -->
+            <HBox spacing="12" alignment="CENTER_LEFT" styleClass="sidebar-brand">
+                 <StackPane style="-fx-background-color: #E8F0FE; -fx-background-radius: 8; -fx-min-width: 32; -fx-min-height: 32;">
+                     <SVGPath content="M4 6a2 2 0 012-2h12a2 2 0 012 2v12a2 2 0 01-2 2H6a2 2 0 01-2-2V6zm2 0h12v12H6V6zm2 2v8h8V8H8z" 
+                         scaleX="0.8" scaleY="0.8" style="-fx-fill: #1A73E8;" />
+                 </StackPane>
+                 <VBox>
+                     <Label text="Library System" styleClass="brand-title"/>
+                     <Label text="Management" styleClass="brand-subtitle"/>
+                 </VBox>
+            </HBox>
+            
+            <VBox spacing="4" style="-fx-padding: 30 0 0 0;">
+                <Button text="Dashboard" styleClass="sidebar-item, sidebar-item-active" maxWidth="Infinity" alignment="CENTER_LEFT">
+                    <graphic>
+                         <SVGPath content="M4 4h6v6H4V4zm8 0h6v6h-6V4zm-8 8h6v6H4v-6zm8 0h6v6h-6v-6z" styleClass="sidebar-icon"/>
+                    </graphic>
+                </Button>
+                <Button text="Reports" styleClass="sidebar-item" maxWidth="Infinity" alignment="CENTER_LEFT">
+                     <graphic>
+                         <SVGPath content="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v2H8V8zm0 4h8v2H8v-2z" styleClass="sidebar-icon"/>
+                    </graphic>
+                </Button>
+                <Button text="Manage Members" styleClass="sidebar-item" maxWidth="Infinity" alignment="CENTER_LEFT">
+                     <graphic>
+                         <SVGPath content="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" styleClass="sidebar-icon"/>
+                    </graphic>
+                </Button>
+                <Button text="Settings" styleClass="sidebar-item" maxWidth="Infinity" alignment="CENTER_LEFT">
+                     <graphic>
+                         <SVGPath content="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l2.03-1.58a.49.49 0 00.12-.61l-1.92-3.32a.488.488 0 00-.59-.22l-2.39.96c-.5-.38-1.03-.7-1.62-.94l-.36-2.54a.484.484 0 00-.48-.41h-3.84c-.24 0-.43.17-.47.41l-.36 2.54c-.59.24-1.13.57-1.62.94l-2.39-.96a.48.48 0 00-.59.22L5.14 8.87a.49.49 0 00.12.61l2.03 1.58c-.05.3-.09.63-.09.94s.02.64.07.94l-2.03 1.58a.49.49 0 00-.12.61l1.92 3.32c.12.22.37.29.59.22l2.39-.96c.5.38 1.03.7 1.62.94l.36 2.54c.05.24.24.41.48.41h3.84c.24 0 .44-.17.47-.41l.36-2.54c.59-.24 1.13-.58 1.62-.94l2.39.96c.22.08.47 0 .59-.22l1.92-3.32a.49.49 0 00-.12-.61l-2.01-1.58zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" styleClass="sidebar-icon"/>
+                    </graphic>
+                </Button>
+            </VBox>
+            
+            <Region vgrow="ALWAYS"/>
+            
+            <Button text="Logout" onAction="#onLogoutClick" styleClass="sidebar-item" maxWidth="Infinity" alignment="CENTER_LEFT">
+                 <graphic>
+                      <SVGPath content="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" styleClass="sidebar-icon"/>
+                 </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <!-- Main Content -->
+    <center>
+        <ScrollPane fitToWidth="true" style="-fx-background-color: transparent; -fx-background: transparent;">
+            <VBox spacing="30" style="-fx-padding: 30;">
+                
+                <!-- Top Bar -->
+                <HBox alignment="CENTER_LEFT" spacing="20">
+                    <Label text="Dashboard" styleClass="page-title"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                    
+                    <HBox alignment="CENTER_LEFT" spacing="15" styleClass="search-bar">
+                         <SVGPath content="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" style="-fx-fill: #9CA3AF;"/>
+                         <TextField promptText="Search for books, members..." style="-fx-background-color: transparent; -fx-padding: 0;"/>
+                    </HBox>
+                    
+                    <Circle radius="16" fill="#FDE68A" />
+                </HBox>
+                
+                <!-- Stats Row -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <VBox styleClass="card" GridPane.columnIndex="0">
+                        <Label text="Total Books" styleClass="stat-label"/>
+                        <Label text="12,450" styleClass="stat-value"/>
+                    </VBox>
+                    
+                     <VBox styleClass="card" GridPane.columnIndex="1">
+                        <Label text="Books Issued" styleClass="stat-label"/>
+                        <Label text="873" styleClass="stat-value"/>
+                    </VBox>
+                    
+                     <VBox styleClass="card" GridPane.columnIndex="2">
+                        <Label text="Overdue Returns" styleClass="stat-label"/>
+                        <Label text="56" styleClass="stat-value"/>
+                    </VBox>
+                    
+                     <VBox styleClass="card" GridPane.columnIndex="3">
+                        <Label text="Active Members" styleClass="stat-label"/>
+                        <Label text="2,189" styleClass="stat-value"/>
+                    </VBox>
+                </GridPane>
+                
+                <!-- Actions Row -->
+                <GridPane hgap="20" vgap="20">
+                    <columnConstraints>
+                         <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                        <ColumnConstraints percentWidth="25"/>
+                    </columnConstraints>
+                    
+                    <VBox styleClass="card, action-card" GridPane.columnIndex="0" onMouseClicked="#onAddBookClick">
+                        <StackPane alignment="CENTER_LEFT" styleClass="action-icon-container, action-icon-blue">
+                            <SVGPath content="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" style="-fx-fill: white;"/>
+                        </StackPane>
+                        <Label text="Add Book" styleClass="action-title"/>
+                        <Label text="Register a new book into the library's collection." styleClass="action-desc" wrapText="true"/>
+                    </VBox>
+                    
+                    <VBox styleClass="card, action-card" GridPane.columnIndex="1" onMouseClicked="#onViewBooksClick">
+                        <StackPane alignment="CENTER_LEFT" styleClass="action-icon-container, action-icon-light-blue">
+                             <SVGPath content="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z" style="-fx-fill: #1A73E8;"/>
+                        </StackPane>
+                         <Label text="View Books" styleClass="action-title"/>
+                        <Label text="Search, browse, and manage the complete book catalog." styleClass="action-desc" wrapText="true"/>
+                    </VBox>
+                    
+                    <VBox styleClass="card, action-card" GridPane.columnIndex="2" onMouseClicked="#onIssueBookClick">
+                         <StackPane alignment="CENTER_LEFT" styleClass="action-icon-container, action-icon-light-blue">
+                             <SVGPath content="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z" style="-fx-fill: #1A73E8;" rotate="-90"/>
+                         </StackPane>
+                         <Label text="Issue Book" styleClass="action-title"/>
+                        <Label text="Check out a book to a registered library member." styleClass="action-desc" wrapText="true"/>
+                    </VBox>
+                    
+                    <VBox styleClass="card, action-card" GridPane.columnIndex="3" onMouseClicked="#onReturnBookClick">
+                         <StackPane alignment="CENTER_LEFT" styleClass="action-icon-container, action-icon-light-blue">
+                             <SVGPath content="M9 16h6v-6h4l-7-7-7 7h4zm-4 2h14v2H5z" style="-fx-fill: #1A73E8;" rotate="-90"/>
+                         </StackPane>
+                         <Label text="Return Book" styleClass="action-title"/>
+                        <Label text="Process the return of an issued book." styleClass="action-desc" wrapText="true"/>
+                    </VBox>
+                </GridPane>
+                
+            </VBox>
+        </ScrollPane>
+    </center>
+    
+</BorderPane>
