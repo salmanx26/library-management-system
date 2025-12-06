@@ -1,0 +1,93 @@
+/* Global Styles */
+.root {
+    -fx-background-color: #F4F7FC;
+    -fx-font-family: 'Segoe UI', sans-serif;
+}
+
+/* Login Card */
+.login-card {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-border-radius: 12;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 4);
+    -fx-padding: 40;
+    -fx-max-width: 400;
+}
+
+/* Headers */
+.header-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #111827;
+}
+
+.header-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6B7280;
+}
+
+/* Form Controls */
+.text-field-container {
+    -fx-spacing: 8;
+}
+
+.input-label {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #374151;
+}
+
+.text-field, .password-field {
+    -fx-background-color: #F9FAFB;
+    -fx-border-color: #E5E7EB;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 10 12;
+    -fx-font-size: 14px;
+    -fx-text-fill: #111827;
+}
+
+.text-field:focused, .password-field:focused {
+    -fx-border-color: #3B82F6;
+    -fx-background-color: #FFFFFF;
+}
+
+/* Button */
+.primary-button {
+    -fx-background-color: #1A73E8;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 6;
+    -fx-border-radius: 6;
+    -fx-padding: 10 16;
+    -fx-cursor: hand;
+}
+
+.primary-button:hover {
+    -fx-background-color: #1557B0;
+}
+
+.primary-button:pressed {
+    -fx-background-color: #0E3C7A;
+}
+
+/* Links */
+.link-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #1A73E8;
+    -fx-underline: true;
+    -fx-font-size: 12px;
+    -fx-cursor: hand;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+}
+
+.link-button:visited {
+    -fx-text-fill: #1A73E8;
+}
+
+.icon-container {
+    -fx-align: center;
+    -fx-padding: 0 0 20 0;
+}
