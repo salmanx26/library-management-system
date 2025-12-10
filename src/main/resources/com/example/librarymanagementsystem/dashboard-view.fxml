@@ -61,7 +61,7 @@
                 </Button>
             </VBox>
             
-            <Region vgrow="ALWAYS"/>
+            <Region VBox.vgrow="ALWAYS"/>
             
             <Button text="Logout" onAction="#onLogoutClick" styleClass="sidebar-item" maxWidth="Infinity" alignment="CENTER_LEFT">
                  <graphic>

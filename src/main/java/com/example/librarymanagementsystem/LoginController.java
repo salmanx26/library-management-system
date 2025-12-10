@@ -4,6 +4,11 @@ import javafx.fxml.FXML;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Button;
+import javafx.stage.Stage;
+import javafx.scene.Scene;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.Alert;
+import java.io.IOException;
 
 public class LoginController {
 
@@ -25,25 +30,53 @@ public class LoginController {
     private boolean isPasswordVisible = false;
 
     @FXML
+    public void initialize() {
+        if (loginButton == null) {
+            System.err.println("Severe Error: loginButton was not injected! Check FXML fx:id.");
+        }
+
+        // Pre-fill credentials for testing
+        usernameField.setText("admin");
+        passwordField.setText("password");
+    }
+
+    @FXML
     protected void onLoginButtonClick() {
-        // In a real app, validation would happen here
-        System.out.println("Login button clicked! Redirecting to dashboard...");
+        if (loginButton == null) {
+            System.err.println("Error: loginButton is null during click event.");
+            return;
+        }
 
-        try {
-            // Get the current stage from the login button
-            javafx.stage.Stage stage = (javafx.stage.Stage) loginButton.getScene().getWindow();
+        String username = usernameField.getText();
+        // Get password from the visible field if it's currently shown, otherwise from
+        // the password field
+        String password = isPasswordVisible ? passwordTextField.getText() : passwordField.getText();
 
-            // Load the dashboard view
-            javafx.fxml.FXMLLoader fxmlLoader = new javafx.fxml.FXMLLoader(
-                    HelloApplication.class.getResource("dashboard-view.fxml"));
-            javafx.scene.Scene scene = new javafx.scene.Scene(fxmlLoader.load(), 1200, 800); // Larger size for
-                                                                                             // dashboard
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert(Alert.AlertType.WARNING, "Validation Error", "Please enter both username and password.");
+            return;
+        }
 
-            stage.setScene(scene);
-            stage.centerOnScreen();
-            stage.setTitle("Library System - Dashboard");
-        } catch (java.io.IOException e) {
-            e.printStackTrace();
+        // Validate credentials
+        if ("admin".equals(username) && "password".equals(password)) {
+            System.out.println("Login successful! Redirecting to dashboard...");
+            try {
+                // Get the current stage from the login button
+                Stage stage = (Stage) loginButton.getScene().getWindow();
+
+                // Load the dashboard view
+                FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("dashboard-view.fxml"));
+                Scene scene = new Scene(fxmlLoader.load(), 1200, 800); // Larger size for dashboard
+
+                stage.setScene(scene);
+                stage.centerOnScreen();
+                stage.setTitle("Library System - Dashboard");
+            } catch (IOException e) {
+                e.printStackTrace();
+                showAlert(Alert.AlertType.ERROR, "System Error", "Could not load the dashboard.\n" + e.getMessage());
+            }
+        } else {
+            showAlert(Alert.AlertType.ERROR, "Login Failed", "Invalid username or password.");
         }
     }
 
@@ -53,11 +86,23 @@ public class LoginController {
         if (isPasswordVisible) {
             passwordTextField.setText(passwordField.getText());
             passwordTextField.setVisible(true);
+            passwordTextField.setManaged(true);
             passwordField.setVisible(false);
+            passwordField.setManaged(false);
         } else {
             passwordField.setText(passwordTextField.getText());
             passwordField.setVisible(true);
+            passwordField.setManaged(true);
             passwordTextField.setVisible(false);
+            passwordTextField.setManaged(false);
         }
+    }
+
+    private void showAlert(Alert.AlertType alertType, String title, String message) {
+        Alert alert = new Alert(alertType);
+        alert.setTitle(title);
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
